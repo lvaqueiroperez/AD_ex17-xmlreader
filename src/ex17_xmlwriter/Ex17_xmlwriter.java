@@ -13,11 +13,16 @@ public class Ex17_xmlwriter {
     public static void main(String[] args) throws FileNotFoundException, XMLStreamException {
 
         /*
+         ler dende o ficheiro products.xml que creaches no exercicio XMLwriter 
+        os datos que almacenache nel e crear un Arraylist de obxectos product 
+        imprimindo as variables de ditos    obxectos dende o Arraylist
+         */
+ /*
          Leer el xml creado en el ex16 de manera que almacenemos sus datos
          en objetos product. Almacenamos a la vez esos objetos en un ArrayList
          y los mostramos en bucle
          */
-        File fich1 = new File("/home/oracle/Desktop/ex16/products.xml");
+        File fich1 = new File("C:\\Users\\luis-\\Desktop\\2ºDAM\\AD\\ex16\\products.xml");
 
         FileReader fich1FR = new FileReader(fich1);
 
@@ -31,53 +36,52 @@ public class Ex17_xmlwriter {
         Product obj;
         String codigo = "";
         String desc = "";
-        Double precio = 0d;
+        Double precio = null;
 
         int cont = 0;
-        
+
         while (xmlSR.hasNext()) {
 
             tipoE = xmlSR.getEventType();
 
             if (tipoE == XMLStreamConstants.START_ELEMENT) {
 
+                //LOS ATRIBUTOS VAN DENTRO DE START ELEMENT !
                 String localName = xmlSR.getLocalName();
-
                 if (localName == "Codigo") {
 
                     codigo = xmlSR.getElementText();
-                    
-                    cont++;
 
                 } else if (localName == "Descripcion") {
 
                     desc = xmlSR.getElementText();
-                    
-                    cont++;
 
                 } else if (localName == "Precio") {
 
                     precio = Double.parseDouble(xmlSR.getElementText());
-                    
-                    cont++;
 
                 }
-                
-               if(cont == 3){
-                   
-                   listaProduct.add(new Product(codigo,desc,precio));
-                   cont = 0;
-               }
+
+                if ((codigo != "") && (desc != "") && (precio != null)) {
+
+                    listaProduct.add(new Product(codigo, desc, precio));
+                    codigo = "";
+                    desc = "";
+                    precio = null;
+
+                }
 
             }
-            
             xmlSR.next();
+        }
+
+        xmlSR.close();
+
+        for (Product p : listaProduct) {
+
+            System.out.println(p);
 
         }
-        
-        xmlSR.close();
-        //no lee el primero???
-        System.out.println(listaProduct.get(0));
 
     }
 
