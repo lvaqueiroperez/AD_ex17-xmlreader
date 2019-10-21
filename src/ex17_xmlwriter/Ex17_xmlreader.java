@@ -8,21 +8,21 @@ import javax.xml.stream.XMLStreamException;
 import ex13_serializacion2.Product;
 import javax.xml.stream.XMLStreamConstants;
 
-public class Ex17_xmlwriter {
+public class Ex17_xmlreader {
 
     public static void main(String[] args) throws FileNotFoundException, XMLStreamException {
 
         /*
          ler dende o ficheiro products.xml que creaches no exercicio XMLwriter 
-        os datos que almacenache nel e crear un Arraylist de obxectos product 
-        imprimindo as variables de ditos    obxectos dende o Arraylist
+         os datos que almacenache nel e crear un Arraylist de obxectos product 
+         imprimindo as variables de ditos    obxectos dende o Arraylist
          */
- /*
+        /*
          Leer el xml creado en el ex16 de manera que almacenemos sus datos
          en objetos product. Almacenamos a la vez esos objetos en un ArrayList
          y los mostramos en bucle
          */
-        File fich1 = new File("C:\\Users\\luis-\\Desktop\\2ºDAM\\AD\\ex16\\products.xml");
+        File fich1 = new File("/home/oracle/Desktop/ex16/products.xml");
 
         FileReader fich1FR = new FileReader(fich1);
 
